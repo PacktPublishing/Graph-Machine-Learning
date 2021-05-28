@@ -54,10 +54,10 @@ With the following software and hardware list you can run all code files present
 
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://static.packt-cdn.com/downloads/9781800204492_ColorImages.pdf).
 
-### Related products <Other books you may enjoy>
-* Linux: Powerful Server Administration [[Packt]](https://www.packtpub.com/networking-and-servers/linux-powerful-server-administration?utm_source=github&utm_medium=repository&utm_campaign=9781788293778) [[Amazon]](https://www.amazon.com/dp/1788293770)
+### Related products 
+* Learn Grafana 7.0 [[Packt]](https://www.packtpub.com/product/learn-grafana-7-0/1838826580) [[Amazon]](https://www.amazon.com/dp/1788293770)
 
-* Linux Device Drivers Development [[Packt]](https://www.packtpub.com/networking-and-servers/linux-device-drivers-development?utm_source=github&utm_medium=repository&utm_campaign=9781785280009) [[Amazon]](https://www.amazon.com/dp/1788293770)
+* Interactive Dashboards and Data Apps with Plotly and Dash [[Packt]](https://www.packtpub.com/product/interactive-dashboards-and-data-apps-with-plotly-and-dash/9781800568914) [[Amazon]](https://www.amazon.com/dp/	1800568916)
 
 ## Get to Know the Authors
 **Claudio Stamile**
