@@ -57,7 +57,7 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 ### Related products 
 * Learn Grafana 7.0 [[Packt]](https://www.packtpub.com/product/learn-grafana-7-0/1838826580) [[Amazon]](https://www.amazon.com/dp/1788293770)
 
-* Interactive Dashboards and Data Apps with Plotly and Dash [[Packt]](https://www.packtpub.com/product/interactive-dashboards-and-data-apps-with-plotly-and-dash/9781800568914) [[Amazon]](https://www.amazon.com/dp/	1800568916)
+* Interactive Dashboards and Data Apps with Plotly and Dash [[Packt]](https://www.packtpub.com/product/interactive-dashboards-and-data-apps-with-plotly-and-dash/9781800568914) [[Amazon]](https://www.amazon.com/dp/1800568916)
 
 ## Get to Know the Authors
 **Claudio Stamile**
