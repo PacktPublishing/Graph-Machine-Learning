@@ -7,7 +7,7 @@ This is the code repository for [Graph Machine Learning](https://www.packtpub.co
 **Take graph data to the next level by applying machine learning techniques and algorithms**
 
 ## What is this book about?
-Data scientists working with network data will be able to put their knowledge to work with this practical guide to building machine learning algorithms using graph data. The book provides a hands-on approach to implementation and associated methodologies that will have you up and running and productive in no time.
+Graph Machine Learning provides a new set of tools for processing network data and leveraging the power of the relation between entities that can be used for predictive, modeling, and analytics tasks.
 
 This book covers the following exciting features: <First 5 What you'll learn points>
 * Write Python scripts to extract features from graphs
