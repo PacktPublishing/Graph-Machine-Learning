@@ -6,10 +6,6 @@ This is the code repository for [Graph Machine Learning](https://www.packtpub.co
 
 **Take graph data to the next level by applying machine learning techniques and algorithms**
 
-## Errata
-Page 16
-
-The expression nt.to.numpy.matrix(G) should be nx.to.numpy.matrix(G)
 
 ## What is this book about?
 Graph Machine Learning provides a new set of tools for processing network data and leveraging the power of the relation between entities that can be used for predictive, modeling, and analytics tasks.
@@ -27,6 +23,10 @@ If you feel this book is for you, get your [copy](https://www.amazon.com/dp/1800
 <a href="https://www.packtpub.com/?utm_source=github&utm_medium=banner&utm_campaign=GitHubBanner"><img src="https://raw.githubusercontent.com/PacktPublishing/GitHub/master/GitHub.png" 
 alt="https://www.packtpub.com/" border="5" /></a>
 
+## Errata
+Page 16
+
+The expression nt.to.numpy.matrix(G) should be nx.to.numpy.matrix(G)
 
 ## Instructions and Navigations
 All of the code is organized into folders. For example, Chapter02.
