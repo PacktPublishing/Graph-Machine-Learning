@@ -6,6 +6,11 @@ This is the code repository for [Graph Machine Learning](https://www.packtpub.co
 
 **Take graph data to the next level by applying machine learning techniques and algorithms**
 
+## Errata
+Page 16
+
+The expression nt.to.numpy.matrix(G) should be nx.to.numpy.matrix(G)
+
 ## What is this book about?
 Graph Machine Learning provides a new set of tools for processing network data and leveraging the power of the relation between entities that can be used for predictive, modeling, and analytics tasks.
 
