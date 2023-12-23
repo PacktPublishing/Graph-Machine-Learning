@@ -1,8 +1,12 @@
+import os
+
 import networkx as nx
 import pathlib
 import matplotlib.pyplot as plt
 
-DATA_DIR = pathlib.Path("/") / "data" / "Chapter01"
+_chapter = os.path.basename(os.getcwd())
+
+DATA_DIR = pathlib.Path("/") / "data" / _chapter
 
 FIGURES_DIR = DATA_DIR / "figures"
 
@@ -15,15 +19,20 @@ if not FIGURES_DIR.exists():
     FIGURES_DIR.mkdir(parents=True)
 
 # draw a simple graph
-def draw_graph(G, node_names={}, filename=None, node_size=50, layout = None):
+def draw_graph(G, node_names={}, filename=None, node_size=50, layout = None, plot_weight=False):
     pos_nodes = nx.spring_layout(G) if layout is None else layout(G)
+    node_names = {k: k for k, v in G.nodes.items()} if not node_names else node_names
     nx.draw(G, pos_nodes, with_labels=False, node_size=node_size, edge_color='gray')
     
     pos_attrs = {}
     for node, coords in pos_nodes.items():
         pos_attrs[node] = (coords[0], coords[1] + 0.08)
-        
-    nx.draw_networkx_labels(G, pos_attrs, labels=node_names, font_family='serif')
+    
+    nx.draw_networkx_labels(G, pos_attrs, labels=node_names, font_family='serif', font_size=20)
+
+    if plot_weight:
+        edge_labels=dict([((a,b,),d["weight"]) for a,b,d in G.edges(data=True)])
+        nx.draw_networkx_edge_labels(G, pos_nodes, edge_labels=edge_labels)
     
     plt.axis('off')
     axis = plt.gca()
