@@ -51,3 +51,11 @@ echo "${LOG_PREFIX} SUCCESS: ${SUCCESS}"
 echo "${LOG_PREFIX} FAILURE: ${FAILURE}"
 echo "${LOG_PREFIX} SKIP: ${SKIP}"
 echo "${LOG_PREFIX} ************************************* "
+
+# Provide 1 exit code if any failure has happened
+if [[ "${FAILURE}" != "0" ]];
+then
+    exit 1
+else
+    exit 0
+fi

@@ -1,0 +1,41 @@
+name: Build Image
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build Image
+        id: build
+        run: |
+          cd docker
+          docker build . -t graph-machine-learning:latest --no-cache 
+
+      - name: Test Image
+        id: tests
+        run: |
+          
+          mkdir -p data
+          chmod -R 777 data 
+          docker run \
+            --rm --detach -v "$(pwd)/data:/data" \
+            --name graph-machine-learning-box \
+            graph-machine-learning:latest
+          
+          # Run tests
+          cd docker
+          
+          # Run the tests only for chapters managed by poetry
+          CHAPTERS=$(find Ch* -name poetry.lock -print0 | sed -e 's/\/poetry.lock//g' | xargs -0)
+          
+          ./tests.sh $CHAPTERS
