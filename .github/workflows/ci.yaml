@@ -31,11 +31,11 @@ jobs:
             --rm --detach -v "$(pwd)/data:/data" \
             --name graph-machine-learning-box \
             graph-machine-learning:latest
-          
-          # Run tests
-          cd docker
-          
+                    
           # Run the tests only for chapters managed by poetry
           CHAPTERS=$(find Ch* -name poetry.lock -print0 | sed -e 's/\/poetry.lock//g' | xargs -0)
-          
+
+          # Run tests
+          cd docker
+
           ./tests.sh $CHAPTERS

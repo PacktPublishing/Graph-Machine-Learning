@@ -21,7 +21,7 @@ WORKDIR /home/${user}/Graph-Machine-Learning
 
 RUN ln -s /data data
 
-RUN git checkout chap1
+RUN git checkout chap6
 
 RUN conda create -n chap1 python=3.9
 RUN conda run -n chap1 pip install -r Chapter01/requirements.txt
@@ -34,6 +34,10 @@ RUN conda run -n chap2 python -m ipykernel install --name chap2 --user
 RUN conda create -n chap3 python=3.8
 RUN conda run -n chap3 pip install -r Chapter03/requirements.txt
 RUN conda run -n chap3 python -m ipykernel install --name chap3 --user
+
+RUN conda create -n chap6 python=3.8
+RUN conda run -n chap6 pip install -r Chapter06/requirements.txt
+RUN conda run -n chap6 python -m ipykernel install --name chap6 --user
 
 EXPOSE 8888
 

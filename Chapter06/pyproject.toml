@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "Graph Machine Learning - Chapter 6"
+version = "1.0.0"
+description = ""
+authors = ["Enrico Deusebio <edeusebio85@gmail.com>"]
+packages = []
+
+[tool.setuptools]
+py-modules = []
+
+[tool.poetry.dependencies]
+python = "~3.8"
+ipykernel = ">=6.0.0" 
+matplotlib = "==3.2.2"
+networkx = "==2.5" 
+scikit-learn = "==0.24.0" 
+gensim = "==3.8.3"
+node2vec = "==0.3.3"
+chardet = "==5.2.0"
+tensorflow = "^2.6.0" 
+tensorflow-io-gcs-filesystem = "==0.21.0" # This needs pinning - see https://stackoverflow.com/a/76477590 
+protobuf= "^3.20"
+python-louvain = "==0.16"
+# communities = "==2.2.0"
+nxt-gem = { git="https://github.com/palash1992/GEM.git", branch="master" }
+# This is what is holding us back to python 3.8
+stellargraph = "^1.2.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
