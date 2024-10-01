@@ -1,6 +1,7 @@
-FROM jupyter/scipy-notebook
+FROM jupyter/scipy-notebook as base
 
 ARG user=euler
+ARG branch=chap6
 
 USER root
 
@@ -16,29 +17,34 @@ ENV NB_USER=${user}
 ENV XDG_CACHE_HOME=/home/${user}/.cache/
 
 RUN git clone https://github.com/deusebio/Graph-Machine-Learning.git /home/${user}/Graph-Machine-Learning
-
 WORKDIR /home/${user}/Graph-Machine-Learning
+RUN git checkout ${branch}
 
 RUN ln -s /data data
+EXPOSE 8888
 
-RUN git checkout chap6
+ENTRYPOINT jupyter notebook --no-browser --port 8888 --NotebookApp.token='' --NotebookApp.password=''
 
+FROM base as chap1
+RUN ls -d -1 */  | grep -v -e Chapter01 | xargs rm -rf
 RUN conda create -n chap1 python=3.9
 RUN conda run -n chap1 pip install -r Chapter01/requirements.txt
 RUN conda run -n chap1 python -m ipykernel install --name chap1 --user
 
+FROM base as chap2
+RUN ls -d -1 */  | grep -v -e Chapter02 | xargs rm -rf
 RUN conda create -n chap2 python=3.11
 RUN conda run -n chap2 pip install -r Chapter02/requirements.txt
 RUN conda run -n chap2 python -m ipykernel install --name chap2 --user
 
+FROM base as chap3
+RUN ls -d -1 */  | grep -v -e Chapter03 | xargs rm -rf
 RUN conda create -n chap3 python=3.8
 RUN conda run -n chap3 pip install -r Chapter03/requirements.txt
 RUN conda run -n chap3 python -m ipykernel install --name chap3 --user
 
+FROM base as chap6
+RUN ls -d -1 */  | grep -v -e Chapter06 | xargs rm -rf
 RUN conda create -n chap6 python=3.8
 RUN conda run -n chap6 pip install -r Chapter06/requirements.txt
 RUN conda run -n chap6 python -m ipykernel install --name chap6 --user
-
-EXPOSE 8888
-
-ENTRYPOINT jupyter notebook --no-browser --port 8888 --NotebookApp.token='' --NotebookApp.password=''

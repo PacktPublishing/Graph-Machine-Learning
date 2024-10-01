@@ -10,16 +10,37 @@ on:
 
 jobs:
   build:
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        chapter:
+          - name: chap1
+            folder: Chapter01
+          - name: chap2
+            folder: Chapter02
+          - name: chap3
+            folder: Chapter03
+          - name: chap6
+            folder: Chapter06
     runs-on: ubuntu-latest
+    name: Image ${{ matrix.chapter.name }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
 
       - name: Build Image
         id: build
         run: |
           cd docker
-          docker build . -t graph-machine-learning:latest --no-cache 
+          docker build . --target ${{ matrix.chapter.name }} \
+            --build-arg branch=${{ steps.extract_branch.outputs.branch }} \
+            -t graph-machine-learning:latest --no-cache 
 
       - name: Test Image
         id: tests
@@ -32,10 +53,7 @@ jobs:
             --name graph-machine-learning-box \
             graph-machine-learning:latest
                     
-          # Run the tests only for chapters managed by poetry
-          CHAPTERS=$(find Ch* -name poetry.lock -print0 | sed -e 's/\/poetry.lock//g' | xargs -0)
-
           # Run tests
           cd docker
 
-          ./tests.sh $CHAPTERS
+          ./tests.sh ${{ matrix.chapter.folder }}
