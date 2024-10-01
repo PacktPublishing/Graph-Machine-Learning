@@ -21,6 +21,8 @@ jobs:
             folder: Chapter02
           - name: chap3
             folder: Chapter03
+          - name: chap5
+            folder: Chapter05
           - name: chap6
             folder: Chapter06
     runs-on: ubuntu-latest
