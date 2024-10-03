@@ -1,7 +1,7 @@
 FROM jupyter/scipy-notebook as base
 
 ARG user=euler
-ARG branch=chap6
+ARG branch=main
 
 USER root
 
@@ -48,6 +48,12 @@ RUN ls -d -1 */  | grep -v -e Chapter05 | xargs rm -rf
 RUN conda create -n chap5 python=3.8
 RUN conda run -n chap5 pip install -r Chapter05/requirements.txt
 RUN conda run -n chap5 python -m ipykernel install --name chap5 --user
+
+FROM base as chap-nn
+RUN ls -d -1 */  | grep -v -e ChapterNN | xargs rm -rf
+RUN conda create -n chap-nn python=3.8
+RUN conda run -n chap-nn pip install -r ChapterNN/requirements.txt
+RUN conda run -n chap-nn python -m ipykernel install --name chap-nn --user
 
 FROM base as chap6
 RUN ls -d -1 */  | grep -v -e Chapter06 | xargs rm -rf
