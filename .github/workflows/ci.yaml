@@ -23,12 +23,12 @@ jobs:
             folder: Chapter03
           - name: chap4
             folder: Chapter04
-          - name: chap-nn
-            folder: ChapterNN
           - name: chap5
             folder: Chapter05
           - name: chap6
             folder: Chapter06
+          - name: chap7
+            folder: Chapter07
     runs-on: ubuntu-latest
     name: Image ${{ matrix.chapter.name }}
     steps:
