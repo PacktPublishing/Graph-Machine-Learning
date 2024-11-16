@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "Graph Machine Learning - Chapter 3"
+name = "Graph Machine Learning - Chapter 8"
 version = "1.0.0"
 description = ""
 authors = ["Enrico Deusebio <edeusebio85@gmail.com>"]
@@ -11,7 +11,7 @@ py-modules = []
 [tool.poetry.dependencies]
 python = "~3.8"
 ipykernel = ">=6.0.0" 
-matplotlib = ">=3.6.0"
+matplotlib = "==3.2.2"
 networkx = "==2.5" 
 scikit-learn = "==0.24.0" 
 gensim = "==3.8.3"
@@ -28,7 +28,7 @@ nltk = "==3.5"
 fasttext-wheel = "==0.9.2"
 langdetect = "~1.0"
 spacy = "^3.7.0"
-
+en-core-web-md = "==3.7.1"
 
 [build-system]
 requires = ["poetry-core"]

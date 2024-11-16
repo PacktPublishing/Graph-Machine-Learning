@@ -66,3 +66,9 @@ RUN ls -d -1 */  | grep -v -e Chapter07 | xargs rm -rf
 RUN conda create -n chap7 python=3.8
 RUN conda run -n chap7 pip install -r Chapter07/requirements.txt
 RUN conda run -n chap7 python -m ipykernel install --name chap7 --user
+
+FROM base as chap8
+RUN ls -d -1 */  | grep -v -e Chapter08 | xargs rm -rf
+RUN conda create -n chap8 python=3.8
+RUN conda run -n chap8 pip install -r Chapter08/requirements.txt
+RUN conda run -n chap8 python -m ipykernel install --name chap8 --user
