@@ -143,11 +143,11 @@ def findSVOs(tokens, output="str"):
                 for obj in objs:
                     objNegated = isNegated(obj)
                     
-                    if output is "str":
+                    if output == "str":
                         element = (
                             sub.lower_, "!" + v.lower_ if verbNegated or objNegated else v.lower_, obj.lower_
                         )
-                    elif output is "obj":
+                    elif output == "obj":
                         element = (sub, (v, verbNegated or objNegated), obj)
                     
                     svos.append(element)

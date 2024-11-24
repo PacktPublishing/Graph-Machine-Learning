@@ -29,6 +29,8 @@ jobs:
             folder: Chapter06
           - name: chap7
             folder: Chapter07
+          - name: chap8
+            folder: Chapter08
     runs-on: ubuntu-latest
     name: Image ${{ matrix.chapter.name }}
     steps:
