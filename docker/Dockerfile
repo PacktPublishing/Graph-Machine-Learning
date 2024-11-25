@@ -15,6 +15,7 @@ USER ${user}
 ENV HOME /home/${user}
 ENV NB_USER=${user}
 ENV XDG_CACHE_HOME=/home/${user}/.cache/
+ENV DATA_FOLDER=/data
 
 RUN git clone https://github.com/deusebio/Graph-Machine-Learning.git /home/${user}/Graph-Machine-Learning
 WORKDIR /home/${user}/Graph-Machine-Learning

@@ -6,7 +6,12 @@ import matplotlib.pyplot as plt
 
 _chapter = os.path.basename(os.getcwd())
 
-DATA_DIR = pathlib.Path("/") / "data" / _chapter
+if _chapter.startswith("Chapter"):
+    BASE_FOLDER = os.environ.get("DATA_FOLDER", os.path.join(os.getcwd(), "..", "data"))
+    DATA_DIR = pathlib.Path(BASE_FOLDER) / _chapter
+else:
+    BASE_FOLDER = os.environ.get("DATA_FOLDER", os.getcwd())
+    DATA_DIR = pathlib.Path(BASE_FOLDER)
 
 FIGURES_DIR = DATA_DIR / "figures"
 

@@ -32,7 +32,7 @@ $ docker run --rm \
 	 graph-machine-learning:latest
 ```
 
-to start the image. We suggest to use the default port 8888 for the `<port>`. This will start a Jupyter server which should be locally accessible at `[http://localhost:8888](http://localhost:8888)` (or change the port accordingly).
+to start the image. Please make sure that the data folder can be written by the Docker image. We suggest to use the default port 8888 for the `<port>`. This will start a Jupyter server which should be locally accessible at `[http://localhost:8888](http://localhost:8888)` (or change the port accordingly). 
 
 ## For Developers
 
