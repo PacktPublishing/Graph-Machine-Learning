@@ -4,6 +4,7 @@ version = "1.0.0"
 description = ""
 authors = ["Enrico Deusebio <edeusebio85@gmail.com>"]
 packages = []
+package-mode = false
 
 [tool.setuptools]
 py-modules = []
