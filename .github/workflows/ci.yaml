@@ -33,6 +33,8 @@ jobs:
             folder: Chapter08
           - name: chap9
             folder: Chapter09
+          - name: chap10
+            folder: Chapter10
     runs-on: ubuntu-latest
     name: Image ${{ matrix.chapter.name }}
     steps:
@@ -58,7 +60,21 @@ jobs:
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_TOKEN: ${{ secrets.KAGGLE_TOKEN }}
         run: |
-          
+
+          docker network create my-network
+
+          # Start Neo4j if we are testing chapter 10
+          if [ "${{ matrix.chapter.name }}" == "chap10" ];
+          then
+            docker run --rm --detach --name neo4j \
+              --publish=7474:7474 --publish=7687:7687 \
+              --user="$(id -u):$(id -g)" \
+              --env NEO4J_AUTH=none \
+              --env NEO4J_PLUGINS='["graph-data-science"]' \
+              neo4j:5.26.0
+            docker network connect my-network neo4j
+          fi
+
           mkdir -p data
           chmod -R 777 data 
           docker run \
@@ -66,8 +82,10 @@ jobs:
             --name graph-machine-learning-box \
             --env KAGGLE_USERNAME=${KAGGLE_USERNAME} \
             --env KAGGLE_KEY=${KAGGLE_TOKEN} \
+            --env NEO4J_HOST=neo4j \
             graph-machine-learning:latest
-                    
+          docker network connect my-network graph-machine-learning-box
+
           # Run tests
           cd docker
 
