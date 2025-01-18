@@ -3203,6 +3203,43 @@ modelhub = ["huggingface_hub"]
 test = ["onnx", "onnxruntime", "pytest", "pytest-cov"]
 
 [[package]]
+name = "torch-scatter"
+version = "2.1.2+pt21cpu"
+description = "PyTorch Extension Library of Optimized Scatter Operations"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "torch_scatter-2.1.2+pt21cpu-cp38-cp38-linux_x86_64.whl", hash = "sha256:2876a541e5428a21fffa8fee97dc3fa833266640e7fb1ec3aab6e8bafa0a2df8"},
+]
+
+[package.extras]
+test = ["pytest", "pytest-cov"]
+
+[package.source]
+type = "url"
+url = "https://data.pyg.org/whl/torch-2.1.0%2Bcpu/torch_scatter-2.1.2%2Bpt21cpu-cp38-cp38-linux_x86_64.whl"
+
+[[package]]
+name = "torch-sparse"
+version = "0.6.18+pt21cpu"
+description = "PyTorch Extension Library of Optimized Autograd Sparse Matrix Operations"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "torch_sparse-0.6.18+pt21cpu-cp38-cp38-linux_x86_64.whl", hash = "sha256:fe2ea180baa399ebb1d695cad1b36e1ffb543e04af30f7880edfa626fbf69e9e"},
+]
+
+[package.dependencies]
+scipy = "*"
+
+[package.extras]
+test = ["pytest", "pytest-cov"]
+
+[package.source]
+type = "url"
+url = "https://data.pyg.org/whl/torch-2.1.0%2Bcpu/torch_sparse-0.6.18%2Bpt21cpu-cp38-cp38-linux_x86_64.whl"
+
+[[package]]
 name = "torchmetrics"
 version = "1.4.3"
 description = "PyTorch native Metrics"
@@ -3637,4 +3674,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.8"
-content-hash = "efa0179eba359fcaefc59bcf838d3ddb4dc246ee64c0190fea65ca3f732b19ef"
+content-hash = "89f2bed3549c14904b7131c0b405e7f7ad775c03b09f33e2364d23ec8d456645"
