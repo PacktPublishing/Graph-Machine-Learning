@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl -fsSL https://ollama.com/install.sh | sh
+curl -fsSL https://ollama.com/install.sh | sudo sh
 
 ollama -v
 
