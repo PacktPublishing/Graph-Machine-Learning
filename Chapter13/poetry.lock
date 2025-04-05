@@ -1859,6 +1859,7 @@ files = [
 fsspec = ">=2024.9.0,<2025.0.0"
 json-repair = ">=0.39.1,<0.40.0"
 neo4j = ">=5.17.0,<6.0.0"
+ollama = {version = ">=0.4.4,<0.5.0", optional = true, markers = "extra == \"ollama\""}
 pydantic = ">=2.6.3,<3.0.0"
 pypdf = ">=5.1.0,<6.0.0"
 pyyaml = ">=6.0.2,<7.0.0"
@@ -2140,6 +2141,22 @@ files = [
     {file = "nvidia_nvtx_cu12-12.1.105-py3-none-manylinux1_x86_64.whl", hash = "sha256:dc21cf308ca5691e7c04d962e213f8a4aa9bbfa23d95412f452254c2caeb09e5"},
     {file = "nvidia_nvtx_cu12-12.1.105-py3-none-win_amd64.whl", hash = "sha256:65f4d98982b31b60026e0e6de73fbdfc09d08a96f4656dd3665ca616a11e1e82"},
 ]
+
+[[package]]
+name = "ollama"
+version = "0.4.7"
+description = "The official Python client for Ollama."
+optional = false
+python-versions = "<4.0,>=3.8"
+groups = ["main"]
+files = [
+    {file = "ollama-0.4.7-py3-none-any.whl", hash = "sha256:85505663cca67a83707be5fb3aeff0ea72e67846cea5985529d8eca4366564a1"},
+    {file = "ollama-0.4.7.tar.gz", hash = "sha256:891dcbe54f55397d82d289c459de0ea897e103b86a3f1fad0fdb1895922a75ff"},
+]
+
+[package.dependencies]
+httpx = ">=0.27,<0.29"
+pydantic = ">=2.9.0,<3.0.0"
 
 [[package]]
 name = "openai"
@@ -4200,4 +4217,4 @@ cffi = ["cffi (>=1.11)"]
 [metadata]
 lock-version = "2.1"
 python-versions = "~3.10"
-content-hash = "1cee11514cf70f92f362e0f608fc3800be3b4c024a7d06a0b0a47c7791939667"
+content-hash = "9898bd5a26a13ee6d345251c4e789fd57b2f0f011f6c5e2c648d5c724144f47a"
