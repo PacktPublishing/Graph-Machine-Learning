@@ -63,9 +63,14 @@ jobs:
 
           docker network create my-network
 
-          # Start Neo4j if we are testing chapter 10
+          # Start Neo4j and JanusGraph if we are testing chapter 10
           if [ "${{ matrix.chapter.name }}" == "chap10" ];
           then
+            docker run --rm --detach --name janusgraph \
+              --publish=8182:8182 \
+              janusgraph/janusgraph:1.1.0
+            docker network connect my-network janusgraph
+
             docker run --rm --detach --name neo4j \
               --publish=7474:7474 --publish=7687:7687 \
               --user="$(id -u):$(id -g)" \
@@ -83,6 +88,7 @@ jobs:
             --env KAGGLE_USERNAME=${KAGGLE_USERNAME} \
             --env KAGGLE_KEY=${KAGGLE_TOKEN} \
             --env NEO4J_HOST=neo4j \
+            --env JANUSGRAPH_HOST=janusgraph \
             graph-machine-learning:latest
           docker network connect my-network graph-machine-learning-box
 
@@ -90,3 +96,8 @@ jobs:
           cd docker
 
           ./tests.sh ${{ matrix.chapter.folder }}
+
+      - name: tmate session if tests fail
+        if: failure() && github.event_name == 'workflow_dispatch'
+        uses: mxschmitt/action-tmate@v3
+      

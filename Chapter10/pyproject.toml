@@ -12,6 +12,8 @@ ipykernel = ">=6.0.0"
 networkx = ">=3.2.0" 
 neo4j = ">=4.2.0"
 gremlinpython = ">=3.4.6"
+graphdatascience = "^1.14"
+pandas = "^2.2.3"
 
 [build-system]
 requires = ["poetry-core"]
