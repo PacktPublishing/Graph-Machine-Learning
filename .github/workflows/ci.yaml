@@ -15,26 +15,28 @@ jobs:
       max-parallel: 5
       matrix:
         chapter:
-          - name: chap1
-            folder: Chapter01
-          - name: chap2
-            folder: Chapter02
-          - name: chap3
-            folder: Chapter03
-          - name: chap4
-            folder: Chapter04
-          - name: chap5
-            folder: Chapter05
-          - name: chap6
-            folder: Chapter06
-          - name: chap7
-            folder: Chapter07
-          - name: chap8
-            folder: Chapter08
-          - name: chap9
-            folder: Chapter09
-          - name: chap10
-            folder: Chapter10
+#          - name: chap1
+#            folder: Chapter01
+#          - name: chap2
+#            folder: Chapter02
+#          - name: chap3
+#            folder: Chapter03
+#          - name: chap4
+#            folder: Chapter04
+#          - name: chap5
+#            folder: Chapter05
+#          - name: chap6
+#            folder: Chapter06
+#          - name: chap7
+#            folder: Chapter07
+#          - name: chap8
+#            folder: Chapter08
+#          - name: chap9
+#            folder: Chapter09
+#          - name: chap10
+#            folder: Chapter10
+          - name: chap13
+            folder: Chapter13
     runs-on: ubuntu-latest
     name: Image ${{ matrix.chapter.name }}
     steps:
@@ -75,6 +77,25 @@ jobs:
             docker network connect my-network neo4j
           fi
 
+          # Start Neo4j if we are testing chapter 13
+          if [ "${{ matrix.chapter.name }}" == "chap13" ];
+          then
+            docker run --rm --detach --name neo4j \
+              --publish=7474:7474 --publish=7687:7687 \
+              --user="$(id -u):$(id -g)" \
+              --env NEO4J_AUTH=none \
+              --env NEO4J_PLUGINS='["graph-data-science"]' \
+              neo4j:5.26.0
+            docker network connect my-network neo4j
+
+            docker run --rm --detach --name ollama \
+              --publish=11434:11434 \
+              --volume olama:/root/.ollama \
+              ollama/ollama:0.6.4
+            docker network connect my-network ollama
+          fi
+
+
           mkdir -p data
           chmod -R 777 data 
           docker run \
@@ -83,6 +104,7 @@ jobs:
             --env KAGGLE_USERNAME=${KAGGLE_USERNAME} \
             --env KAGGLE_KEY=${KAGGLE_TOKEN} \
             --env NEO4J_HOST=neo4j \
+	    --env OLLAMA_HOST=ollama \
             graph-machine-learning:latest
           docker network connect my-network graph-machine-learning-box
 
