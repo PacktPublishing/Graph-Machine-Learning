@@ -85,3 +85,10 @@ RUN ls -d -1 */  | grep -v -e Chapter10 | xargs rm -rf
 RUN conda create -n chap10 python=3.10
 RUN conda run -n chap10 pip install -r Chapter10/requirements.txt
 RUN conda run -n chap10 python -m ipykernel install --name chap10 --user
+
+FROM base as chap13
+RUN ls -d -1 */  | grep -v -e Chapter13 | xargs rm -rf
+RUN conda create -n chap13 python=3.10
+RUN conda run -n chap13 pip install -r Chapter13/requirements.txt
+RUN conda run -n chap13 python -m ipykernel install --name chap13 --user
+RUN /bin/bash ./Chapter13/setup_ollama.sh
