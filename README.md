@@ -26,10 +26,6 @@ If you feel this book is for you, get your [copy](https://www.amazon.com/dp/1800
 <a href="https://www.packtpub.com/?utm_source=github&utm_medium=banner&utm_campaign=GitHubBanner"><img src="https://raw.githubusercontent.com/PacktPublishing/GitHub/master/GitHub.png" 
 alt="https://www.packtpub.com/" border="5" /></a>
 
-## Errata
-Page 16
-
-The expression nt.to.numpy.matrix(G) should be nx.to.numpy.matrix(G)
 
 ## Instructions and Navigations
 All of the code is organized into folders. For example, Chapter02.
@@ -44,6 +40,15 @@ generator = HinSAGENodeGenerator(
  head_node_type="document"
 )
 ```
+
+The notebooks in the repositories save files and figures into dedicated folders as they are executed. The format for these folders are:
+
+```
+<DATA_FOLDER>/Chapter<n>
+```
+
+where `DATA_FOLDER` is an environment variable that you can use to customize the position for the data. If the variable is not set, its value fall back to `<root_folder_repo>/data`.
+
 **Following is what you need for this book:**
 This book is for data analysts, graph developers, graph analysts, and graph professionals who want to leverage the information embedded in the connections and relations between data points to boost their analysis and model performance. The book will also be useful for data scientists and machine learning developers who want to build ML-driven graph databases. A beginner-level understanding of graph databases and graph data is required. Intermediate-level working knowledge of Python programming and machine learning is also expected to make the most out of this book.
 

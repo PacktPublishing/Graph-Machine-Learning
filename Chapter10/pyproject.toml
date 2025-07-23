@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "Graph Machine Learning - Chapter 10"
+version = "1.0.0"
+description = ""
+authors = ["Enrico Deusebio <edeusebio85@gmail.com>"]
+packages = []
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "~3.10"
+ipykernel = ">=6.0.0" 
+networkx = ">=3.2.0" 
+neo4j = ">=4.2.0"
+gremlinpython = ">=3.4.6"
+graphdatascience = "^1.14"
+pandas = "^2.2.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

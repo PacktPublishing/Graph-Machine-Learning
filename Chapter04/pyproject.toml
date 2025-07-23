@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "Graph Machine Learning (2nd Edition) - Chapter 4"
+version = "1.0.0"
+description = ""
+authors = ["Enrico Deusebio <edeusebio85@gmail.com>"]
+packages = []
+package-mode = false
+
+[tool.setuptools]
+py-modules = []
+
+[tool.poetry.dependencies]
+python = "~3.8"
+ipykernel = ">=6.0.0" 
+networkx = "==2.5" 
+matplotlib = "==3.2.2"
+node2vec = "==0.3.3"
+karateclub = "==1.0.19"
+gensim = "==3.8.3"
+scikit-learn = "==0.24.0" 
+tensorflow = "==2.4.0" 
+nxt-gem = { git="https://github.com/palash1992/GEM.git", branch="master" }
+# This is what is holding us back to python 3.8
+stellargraph = { git="https://github.com/stellargraph/stellargraph.git", branch="develop" }
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

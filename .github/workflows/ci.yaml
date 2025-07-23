@@ -1,0 +1,139 @@
+name: Build Image
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+  workflow_call:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        chapter:
+         - name: chap1
+           folder: Chapter01
+         - name: chap2
+           folder: Chapter02
+         - name: chap3
+           folder: Chapter03
+         - name: chap4
+           folder: Chapter04
+         - name: chap5
+           folder: Chapter05
+         - name: chap6
+           folder: Chapter06
+         - name: chap7
+           folder: Chapter07
+         - name: chap8
+           folder: Chapter08
+         - name: chap9
+           folder: Chapter09
+         - name: chap10
+           folder: Chapter10
+         - name: chap12
+           folder: Chapter12
+    runs-on: ubuntu-22.04
+    name: Image ${{ matrix.chapter.name }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
+      - name: (GitHub hosted) Free up disk space
+        shell: bash
+        run: |
+          printf '\nDisk usage before cleanup\n'
+          df --human-readable
+          # Based on https://github.com/actions/runner-images/issues/2840#issuecomment-790492173
+          rm -r /usr/share/dotnet
+          rm -r /opt/hostedtoolcache/
+          printf '\nDisk usage after cleanup\n'
+          df --human-readable
+
+      - name: Build Image
+        id: build
+        run: |
+          cd docker
+          docker build . --target ${{ matrix.chapter.name }} \
+            --build-arg branch=${{ steps.extract_branch.outputs.branch }} \
+            -t graph-machine-learning:latest --no-cache 
+
+      - name: Test Image
+        id: tests
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_TOKEN: ${{ secrets.KAGGLE_TOKEN }}
+        run: |
+
+          docker network create my-network
+
+          # Start Neo4j and JanusGraph if we are testing chapter 10
+          if [ "${{ matrix.chapter.name }}" == "chap10" ];
+          then
+            docker run --rm --detach --name janusgraph \
+              --publish=8182:8182 \
+              janusgraph/janusgraph:1.1.0
+            docker network connect my-network janusgraph
+
+            docker run --rm --detach --name neo4j \
+              --publish=7474:7474 --publish=7687:7687 \
+              --user="$(id -u):$(id -g)" \
+              --env NEO4J_AUTH=none \
+              --env NEO4J_PLUGINS='["graph-data-science"]' \
+              neo4j:5.26.0
+            docker network connect my-network neo4j
+          fi
+
+          # Start Neo4j if we are testing chapter 13
+          if [ "${{ matrix.chapter.name }}" == "chap12" ];
+          then
+            docker run --rm --detach --name neo4j \
+              --publish=7474:7474 --publish=7687:7687 \
+              --user="$(id -u):$(id -g)" \
+              --env NEO4J_AUTH=none \
+              --env NEO4J_PLUGINS='["apoc","apoc-extended"]' \
+              --env NEO4J_apoc_export_file_enabled=true \
+              --env NEO4J_apoc_import_file_enabled=true \
+              --env NEO4J_apoc_import_file_use__neo4j_config=true \
+              neo4j:5.26.0
+            docker network connect my-network neo4j
+
+            docker run --rm --detach --name ollama \
+              --publish=11434:11434 \
+              --volume olama:/root/.ollama \
+              ollama/ollama:0.6.4
+            docker network connect my-network ollama
+          fi
+
+
+          mkdir -p data
+          chmod -R 777 data 
+          docker run \
+            --rm --detach -v "$(pwd)/data:/data" \
+            --name graph-machine-learning-box \
+            --env KAGGLE_USERNAME=${KAGGLE_USERNAME} \
+            --env KAGGLE_KEY=${KAGGLE_TOKEN} \
+            --env NEO4J_HOST=neo4j \
+            --env JANUSGRAPH_HOST=janusgraph \
+            --env OLLAMA_HOST=ollama \
+            graph-machine-learning:latest
+          docker network connect my-network graph-machine-learning-box
+
+          # Run tests
+          cd docker
+
+          ./tests.sh ${{ matrix.chapter.folder }}
+
+      - name: tmate session if tests fail
+        if: failure() && github.event_name == 'workflow_dispatch'
+        uses: mxschmitt/action-tmate@v3
+      
