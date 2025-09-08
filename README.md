@@ -139,7 +139,7 @@ The authors acknowledge the use of cutting-edge AI, such as ChatGPT, with the so
 
 
 <details> 
-  <summary><h2>Get to know Authors</h2></summary>
+  <summary><h2>Get to know the Authors</h2></summary>
 
 _Aldo Marzullo_ received an M.Sc. degree in computer science from the University of Calabria (Cosenza, Italy) in September 2016. During his studies, he developed a solid background in several areas, including algorithm design, graph theory, and machine learning. In January 2020, he received his joint Ph.D. from the University of Calabria and Université Claude Bernard Lyon 1 (Lyon, France), with a thesis titled Deep Learning and Graph Theory for Brain Connectivity Analysis in Multiple Sclerosis. He is currently a postdoctoral researcher and collaborates with several international institutions.
 
