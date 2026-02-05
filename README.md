@@ -1,5 +1,7 @@
 <p align='center'><a href='https://www.eventbrite.com/e/machine-learning-and-generative-ai-system-design-workshop-tickets-1975103644168?aff=Github'><img src='https://static.packt-cdn.com/assets/images/packt+events/Sairam_ML_GenAI_Github_banner.png'/></a></p>
 
+<p align='center'><a href='https://www.eventbrite.com/e/machine-learning-and-generative-ai-system-design-workshop-tickets-1975103644168?aff=Github'><img src='https://static.packt-cdn.com/assets/images/packt+events/Sairam_ML_GenAI_Github_banner.png'/></a></p>
+
 <h1 align="center">
 Graph Machine Learning, Second Edition</h1>
 <p align="center">This is the code repository for <a href ="https://www.packtpub.com/en-us/product/graph-machine-learning-9781803248066"> Graph Machine Learning, Second Edition</a>, published by Packt.
