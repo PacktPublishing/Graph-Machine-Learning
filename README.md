@@ -1,3 +1,5 @@
+<p align='center'><a href='https://www.eventbrite.com/e/ship-production-pytorch-system-in-a-day-train-optimize-deploy-workshop-tickets-1983348934052?aff=GitHub'><img src='https://static.packt-cdn.com/assets/images/packt+events/workshop_ashish_github.png'/></a></p>
+
 <h1 align="center">
 Graph Machine Learning, Second Edition</h1>
 <p align="center">This is the code repository for <a href ="https://www.packtpub.com/en-us/product/graph-machine-learning-9781803248066"> Graph Machine Learning, Second Edition</a>, published by Packt.
